@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas - Giordano</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./indexmoedas.css">
+</head>
+
+<body>
+     
+    <img class="logo" src="./assets2/sonic.gif" alt="sonic-logo-converter">
+    <main>
+
+        <label>
+
+             converter <b>de</b>
+
+
+            <select class="currency-select-1">
+
+            <option value="reaal">R$ Real Brasileiro</option>
+            
+
+
+
+            </select>
+
+
+        </label>
+
+
+        <label>
+            
+            converter <b>para</b>
+
+            <select class="currency-select">
+
+             <option value = "dolar">U$ Dólar americano</option>
+             <option value = "euro">€ Euro</option>
+             <option value = "bitcoin">₿ bitcoin</option>
+             
+
+            </select>
+
+
+        </label>
+
+        <label>
+            Valor
+            <input class="input-currency"  placeholder="R$ 1.000,00">
+        </label>
+
+         <button class="convert-button">Converter</button>
+
+         <section>
+
+            <div class="currency-box">
+
+            <img src="./assets2/real.png" alt="logo-moeda-a-converter">
+            <p class="currency" id="currency-firstname">$ Real</p>
+            <p class="currancy-value-to-convert">R$ 0,00</p>
+
+            </div>
+
+            <img class="arrow-img" src="./assets2/Vector.png" alt="seta">
+
+            <div class="currency-box">
+            <img class="currency-png" src="./assets2/dolar.png" alt="logo-moeda-convertida">
+            <p class="currency" id="currency-name">Dólar americano</p>
+            <p class="currancy-value-1">$ 0,00</p>
+            </div>
+
+            
+         </section>
+         
+ 
+
+      
+
+
+    </main>
+    
+</body>
+
+ <audio id="backgroundMusic" src = "assets2/Sonic The Hedgehog OST - Green Hill Zone.mp3" autoplay loop muted></audio>
+
+<script src="./indexmoedas.js"></script>
+</html>
