@@ -26,11 +26,13 @@ function convertValues(){
      
     console.log(currencySelect.value)
 
-    const dolartoday = 5.69
+    const dolartoday = 5.48
 
-    const euroToday = 6.32
+    const euroToday = 6.41
 
     const bitcoinToday = 595550.81
+
+    const libraToday = 7.45
 
     const realToday = 1.00
 
@@ -73,6 +75,14 @@ function convertValues(){
         } ).format(inputCurrencyValue/bitcoinToday)
        }
 
+       if (currencySelect.value == "libra") {
+    currencyValueToConverted.innerHTML = new Intl.NumberFormat("en-GB", {
+        style: "currency",
+        currency: "GBP"
+    }).format(inputCurrencyValue / libraToday)
+}
+
+
 
 
 
@@ -101,7 +111,7 @@ function changeCurrency() {
 
     if (currencySelect.value == "dolar") {
      currencyName.innerHTML = "Dólar americano"
-     currencyIMG.src = "./assets2/dolar.png"
+     currencyIMG.src = "./assests2/dolar.png"
      }
 
      if (currencySelect.value == "euro") {
@@ -111,7 +121,12 @@ function changeCurrency() {
 
      if (currencySelect.value == "bitcoin") {
      currencyName.innerHTML = "bitcoin"
-     currencyIMG.src = "./assets2/bitcoin1.png"
+     currencyIMG.src = "./assets2/bitcoin.png"
+     }
+
+     if (currencySelect.value == "libra") {
+     currencyName.innerHTML = "libra"
+     currencyIMG.src = "./assests2/libra.jpg"
      }
 
 
@@ -120,76 +135,7 @@ function changeCurrency() {
 }
 
 
-function convertValues(){
 
-const inputCurrencyValue = document.querySelector(".input-currency").value
-
- const currencyValueToConvert = document.querySelector(".currancy-value-to-convert")  // valor em real
-
- const currencyValueToConverted = document.querySelector(".currancy-value-1") // outras moedas 
-
- console.log(currencySelect1.value)
-
-    const dolartoday = 5.69
-
-    const euroToday = 6.32
-
-    const bitcoinToday = 595550.81
-
-    const realToday = 1.00
-
-
-     if(currencySelect.value == "dolar"){ //se o select estiver selecionado o valor de dolar entra aqui
-
-          currencyValueToConverted.innerHTML = new Intl.NumberFormat("en-US", {
-
-        style: "currency",
-        currency: "USD"
-    }).format(inputCurrencyValue / dolartoday)
-
-
-       }
-
-       if(currencySelect.value == "euro"){
-
-        currencyValueToConverted.innerHTML = new Intl.NumberFormat("de-DE", {
-              
-            style:"currency",
-            currency: "EUR"
-
-
-        } ).format(inputCurrencyValue/euroToday)
-       }
-
-
-        if(currencySelect.value == "bitcoin"){
-
-        currencyValueToConverted.innerHTML = new Intl.NumberFormat("de-DE", {
-              
-            style:"currency",
-            currency: "XBT"
-
-
-        } ).format(inputCurrencyValue/bitcoinToday)
-       }
-
-
-
-
-
-    currencyValueToConvert.innerHTML = inputCurrencyValue         
-            
-
-
-    
-  
-
-    console.log(convertedValue)
-
-
-
-
-}
 
 function changeCurrency() {
      
@@ -204,12 +150,12 @@ function changeCurrency() {
 
      if (currencySelect.value == "euro") {
      currencyName.innerHTML = "Euro"
-     currencyIMG.src = "./assets2/euroo.png"
+     currencyIMG.src = "./assests2/euroo.png"
      }
 
-     if (currencySelect.value == "bitcoin") {
-     currencyName.innerHTML = "bitcoin"
-     currencyIMG.src = "./assets2/bitcoin1.png"
+     if (currencySelect.value == "libra") {
+     currencyName.innerHTML = "libra"
+     currencyIMG.src = "./assests2/libra.jpg"
      }
 
 
@@ -224,7 +170,7 @@ function changeCurrency() {
 
 
 const backgroundMusic = document.getElementById('backgroundMusic');
-     backgroundMusic.muted = false; // Remova o mute para que a música possa ser ouvida.
+     backgroundMusic.muted = true; // Remova o mute para que a música possa ser ouvida.
 
      // Função para pausar a reprodução
      function pausarMusica() {
