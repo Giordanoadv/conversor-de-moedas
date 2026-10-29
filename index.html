@@ -1,94 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Moedas - Giordano</title>
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="./indexmoedas.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7354cd">
+  <meta name="description" content="Converta real, dólar, euro, libra, bitcoin e outras moedas com cotações atualizadas automaticamente. Um projeto de Giordano Bruno.">
+  <title>Conversor de Moedas · Giordano Bruno</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./indexmoedas.css">
+  <script type="module" src="./indexmoedas.js"></script>
 </head>
-// comentário //
 <body>
-     
-    <img class="logo" src="./assests2/sonic.gif" alt="sonic-logo-converter">
-    <main>
+  <a class="skip-link" href="#conversor">Ir para o conversor</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Conversor de moedas, início"><span class="brand-icon" aria-hidden="true">⇄</span><span>moeda<span class="brand-dot">.</span></span></a>
+    <nav aria-label="Navegação principal"><a class="active" href="#conversor">Conversor</a><a href="#cotacoes">Cotações</a><a href="#sobre">Como funciona <span aria-hidden="true">↗</span></a></nav>
+    <a class="author" href="https://github.com/Giordanoadv/conversor-de-moedas" target="_blank" rel="noopener noreferrer">Um projeto de <strong>Giordano Bruno <span aria-hidden="true">↗</span></strong></a>
+  </header>
 
-        <label>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow"><span></span> CÂMBIO, SEM COMPLICAÇÃO</p><h1 id="page-title">Seu dinheiro, em<br><em>qualquer moeda.</em></h1><p class="intro-copy">Faça as contas para sua próxima viagem, compra ou ideia.<br class="desktop-break"> Cotações atualizadas. Conversão em um instante.</p></div>
+      <div class="connection"><div class="status-pill" id="connection-pill"><span class="status-dot"></span><span id="connection-status">Conectando às cotações</span></div><p id="last-check">Consultas automáticas a cada minuto</p></div>
+    </section>
 
-             converter <b>de</b>
+    <div class="workspace">
+      <section class="converter panel" id="conversor" aria-labelledby="converter-title">
+        <div class="panel-heading"><h2 id="converter-title"><span class="small-icon" aria-hidden="true">⇄</span> Conversor de moedas</h2><span class="quiet-tag">SIMPLES. DIRETO.</span></div>
+        <form id="converter-form" novalidate>
+          <div class="currency-fields">
+            <div class="field"><label for="from">De</label><div class="select-wrap"><span class="flag" id="from-flag" aria-hidden="true">🇧🇷</span><select id="from" name="from" aria-label="Moeda de origem"></select><svg aria-hidden="true" viewBox="0 0 20 20"><path d="m5 7 5 5 5-5"/></svg></div></div>
+            <button class="swap" id="swap" type="button" aria-label="Inverter moedas" title="Inverter moedas">⇄</button>
+            <div class="field"><label for="to">Para</label><div class="select-wrap"><span class="flag" id="to-flag" aria-hidden="true">🇺🇸</span><select id="to" name="to" aria-label="Moeda de destino"></select><svg aria-hidden="true" viewBox="0 0 20 20"><path d="m5 7 5 5 5-5"/></svg></div></div>
+          </div>
+          <label class="amount-label" for="amount">Quanto você quer converter?</label>
+          <div class="amount-wrap"><span id="amount-symbol" aria-hidden="true">R$</span><input id="amount" name="amount" type="text" inputmode="decimal" autocomplete="off" maxlength="30" value="1.000,00" aria-describedby="amount-help amount-error"><span id="amount-code">BRL</span></div>
+          <div class="input-caption"><span id="amount-help">Use vírgula para os centavos.</span><span id="amount-error" role="alert"></span></div>
+          <button class="convert-button" type="submit"><span>Converter agora</span><span aria-hidden="true">↗</span></button>
+        </form>
 
+        <section class="result" aria-label="Resultado da conversão" aria-live="polite" aria-atomic="true">
+          <div class="result-top"><span id="result-caption">Seu valor convertido</span><button id="copy" type="button" class="copy-button" aria-label="Copiar resultado" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="9" height="10" rx="2"/><path d="M12 7V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3"/></svg><span id="copy-label">Copiar</span></button></div>
+          <output id="result-value" for="amount from to">Buscando cotação…</output>
+          <p id="unit-rate">Os valores aparecerão assim que a fonte responder.</p>
+          <div class="result-meta"><span class="clock-icon" aria-hidden="true">◷</span><span id="quote-time">Aguardando a primeira cotação</span></div>
+        </section>
+        <p class="data-notice" id="data-notice" role="status" hidden></p>
+        <div class="quick-pairs"><span>Atalhos</span><button type="button" data-from="BRL" data-to="EUR">Real <span aria-hidden="true">→</span> Euro</button><button type="button" data-from="USD" data-to="BRL">Dólar <span aria-hidden="true">→</span> Real</button><button type="button" data-from="BTC" data-to="BRL">Bitcoin <span aria-hidden="true">→</span> Real</button></div>
+      </section>
 
-            <select class="currency-select-1">
+      <aside class="market panel" id="cotacoes" aria-labelledby="market-title">
+        <div class="panel-heading"><h2 id="market-title">De olho no câmbio</h2><span class="market-icon" aria-hidden="true">↗</span></div>
+        <p class="panel-subtitle">Quanto vale 1 unidade em reais</p>
+        <div class="market-columns"><span>MOEDA</span><span>COTAÇÃO / VARIAÇÃO¹</span></div>
+        <div id="market-list" class="market-list" aria-live="off"></div>
+        <button class="more-button" id="more-currencies" type="button" aria-expanded="false">Ver todas as moedas <span aria-hidden="true">↓</span></button>
+        <div class="market-footer"><span>Fonte: <a href="https://docs.awesomeapi.com.br/api-de-moedas" target="_blank" rel="noopener noreferrer">AwesomeAPI ↗</a></span><button type="button" id="refresh" class="refresh-button" aria-label="Atualizar cotações"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M16 8a6 6 0 1 0 0 5M16 3v5h-5"/></svg><span>Atualizar</span></button></div>
+        <p class="market-note">¹ Variação de compra informada pela fonte. Toque em uma moeda para converter.</p>
+      </aside>
+    </div>
 
-            <option value="reaal">R$ Real Brasileiro</option>
-            
+    <section class="principles" aria-label="Sobre as cotações">
+      <div><span class="principle-icon" aria-hidden="true">↻</span><div><h3>Sempre em dia</h3><p>Novas consultas a cada 60 segundos,<br>enquanto a página estiver aberta.</p></div></div>
+      <div><span class="principle-icon" aria-hidden="true">⇄</span><div><h3>Ida e volta</h3><p>10 moedas, em qualquer direção.<br>Troque o par com um clique.</p></div></div>
+      <div><span class="principle-icon" aria-hidden="true">◎</span><div><h3>Sem surpresas</h3><p>Fonte e horário visíveis.<br>Você sabe de onde vem cada valor.</p></div></div>
+    </section>
 
-
-
-            </select>
-
-
-        </label>
-
-
-        <label>
-            
-            converter <b>para</b>
-
-            <select class="currency-select">
-
-             <option value = "dolar">U$ Dólar americano</option>
-             <option value = "euro">€ Euro</option>
-             <option value = "bitcoin">₿ bitcoin</option>
-             <option value="libra"> £ Libra </option>
-             
-
-            </select>
-
-
-        </label>
-
-        <label>
-            Valor
-            <input class="input-currency"  placeholder="R$ 1.000,00">
-        </label>
-
-         <button class="convert-button">Converter</button>
-
-         <section>
-
-            <div class="currency-box">
-
-            <img src="./assests2/real.png" alt="logo-moeda-a-converter">
-            <p class="currency" id="currency-firstname">$ Real</p>
-            <p class="currancy-value-to-convert">R$ 0,00</p>
-
-            </div>
-
-            <img class="arrow-img" src="./assests2/Vector.png" alt="seta">
-
-            <div class="currency-box">
-            <img class="currency-png" src="./assests2/dolar.png" alt="logo-moeda-convertida">
-            <p class="currency" id="currency-name">Dólar americano</p>
-            <p class="currancy-value-1">$ 0,00</p>
-            </div>
-
-            
-         </section>
-         
- 
-
-      
-
-
-    </main>
-    
+    <section id="sobre" class="about" aria-labelledby="about-title"><div><p class="eyebrow">BOM SABER</p><h2 id="about-title">Uma cotação.<br>Mais clareza.</h2></div><div class="questions">
+      <details><summary>As cotações são em tempo real?<span aria-hidden="true">+</span></summary><p>Consultamos a AwesomeAPI automaticamente a cada minuto, enquanto esta aba estiver visível. O serviço gratuito pode retornar dados em cache por alguns minutos. A hora exibida é a da cotação recebida: fora do horário de negociação, ou durante uma interrupção da fonte, ela pode ser anterior. Se uma consulta falhar, sinalizamos os últimos dados disponíveis.</p></details>
+      <details><summary>Este é o valor que vou pagar?<span aria-hidden="true">+</span></summary><p>O resultado é uma referência: usamos a média entre compra e venda da fonte. Não inclui IOF, tarifas nem o spread de bancos e casas de câmbio. Bitcoin é um criptoativo e seu preço varia entre plataformas.</p></details>
+      <details><summary>Como a conversão é calculada?<span aria-hidden="true">+</span></summary><p>Cada moeda tem um valor em reais. Multiplicamos a quantia pela cotação da moeda de origem e dividimos pela cotação da moeda de destino. Entre duas moedas estrangeiras, o resultado é uma taxa cruzada via real. Bitcoin aparece com 8 casas decimais; iene, sem centavos.</p></details>
+    </div></section>
+  </main>
+  <footer><a class="brand footer-brand" href="#">moeda<span class="brand-dot">.</span></a><p>Feito por <strong>Giordano Bruno</strong> · Conectando valores, simplificando escolhas.</p><a href="https://github.com/Giordanoadv/conversor-de-moedas" target="_blank" rel="noopener noreferrer">Código no GitHub <span aria-hidden="true">↗</span></a></footer>
+  <noscript><p class="noscript">Ative o JavaScript no navegador para consultar cotações e converter moedas.</p></noscript>
 </body>
-
- <audio id="backgroundMusic" src = "assests2/Sonic The Hedgehog OST - Green Hill Zone.mp3" autoplay loop muted></audio>
-
-<script src="./indexmoedas.js"></script>
 </html>
